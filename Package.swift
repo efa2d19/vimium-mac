@@ -13,8 +13,17 @@ let package = Package(
     .executableTarget(
       name: appName,
       dependencies: [],
+      path: "Cli",
+      exclude: ["Tests"],
       resources: [.copy("Resources/DaemonTemplate.plist")]
-    )
+    ),
+    .testTarget(
+      name: "\(appName)Tests",
+      dependencies: [
+        .target(name: appName),
+      ],
+      path: "Cli/Tests",
+    ),
   ],
   swiftLanguageModes: [.v6],
 )
